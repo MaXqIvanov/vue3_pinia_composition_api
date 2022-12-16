@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "watch": "tsc -w",
+    "dev_server": "nodemon index.ts"
   },
   "dependencies": {
     "@types/express": "^4.17.15",
