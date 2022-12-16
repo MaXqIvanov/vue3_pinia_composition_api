@@ -10,6 +10,6 @@ app.get('/*', (req: Request, res: Response) => {
     res.sendFile(`../dist/index.html`);
 });
 
-app.listen(5003, () => {
-    console.log('Application listening on port 5003!');
+app.listen(5007, () => {
+    console.log('Application listening on port 5007!');
 });
