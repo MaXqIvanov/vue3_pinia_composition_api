@@ -6,6 +6,9 @@ interface IBox {
   color_blur: string;
   count: number;
 }
+interface IInputFileEvent extends Event {
+  target: HTMLInputElement;
+}
 
 export const useBoxStore = defineStore("boxStore", {
   state: () => ({
@@ -63,14 +66,14 @@ export const useBoxStore = defineStore("boxStore", {
       this.current_index_box = index;
       this.is_visible_sidebar = !this.is_visible_sidebar;
     },
-    dragStartHandler(event: any, box: IBox, index: number) {
+    dragStartHandler(event: IInputFileEvent, box: IBox, index: number) {
       this.drag_id = box.id;
       this.drag_index = index;
     },
-    dragOverHandler(event: any) {
+    dragOverHandler(event: IInputFileEvent) {
       event.preventDefault();
     },
-    DropHandler(event: any, box: IBox, index: number) {
+    DropHandler(event: IInputFileEvent, box: IBox, index: number) {
       event.preventDefault();
       if (
         this.drag_index !== null &&
@@ -90,13 +93,14 @@ export const useBoxStore = defineStore("boxStore", {
         this.box = box;
       }
     },
-    async changeCountBoxes(event: any) {
+    async changeCountBoxes(event: IInputFileEvent) {
+      const value = event as unknown as number
       if (
         this.current_index_box &&
-        event.target.value >= 0 &&
+        value >= 0 &&
         event.target.value !== null
       ) {
-        this.box[this.current_index_box].count = event.target.value;
+        this.box[this.current_index_box].count = value;
         localStorage.setItem("BP_boxes", JSON.stringify(this.box));
       }
     },
