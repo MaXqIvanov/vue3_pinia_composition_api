@@ -27,6 +27,7 @@
     position: relative;
     height: 6vh;
     width: 6vh;
+    cursor: pointer;
 }
 .one_box__count{
     position: absolute;
