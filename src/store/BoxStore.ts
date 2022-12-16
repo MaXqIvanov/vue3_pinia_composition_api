@@ -33,7 +33,7 @@ export const useBoxStore = defineStore('boxStore', {
         drag_index: null as number | null
     }),
     actions: {
-        setCurrentBox(box: IBox | null, index: number){
+        setCurrentBox(box: IBox | null, index: number | null){
             this.current_box = box
             this.current_index_box = index
             this.is_visible_sidebar = !this.is_visible_sidebar

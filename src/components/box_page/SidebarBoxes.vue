@@ -15,7 +15,7 @@
                 <div class="shadow_block sidebar_boxes__shadow_block"></div>
             </div>
             <div class="sidebar_boxes__footer">
-                <input placeholder="Введите количество" :defaultValue="boxStore.current_box.count" @input="boxStore.changeCountBoxes"/>
+                <input placeholder="Введите количество" :defaultValue="boxStore.current_box !== null && boxStore.current_box.count" @input="boxStore.changeCountBoxes"/>
                 <Button v-if="!is_approve_delete" @click="is_approve_delete = !is_approve_delete" :text_color="'white'" :background_color="'#FA7272'" :title="'Удалить предмет'" :style="{padding: '1vw 5vw',  whiteSpace: 'nowrap'}"/>
                 <div v-else class="group_btn">
                     <Button @click="is_approve_delete = !is_approve_delete" :text_color="'#2D2D2D'" :background_color="'white'" :title="'Отмена'" :style="{padding: '1vw 2vw',  whiteSpace: 'nowrap'}"/>
