@@ -1,17 +1,15 @@
 <template>
-    <div>
-        <Boxes />
-    </div>
+  <div>
+    <Boxes />
+  </div>
 </template>
 
 <script setup lang="ts">
-import Boxes from '../components/box_page/Boxes.vue';
-import { useBoxStore } from '../store/BoxStore';
-const boxStore = useBoxStore()
+import Boxes from "../components/box_page/BoxesComponent.vue";
+import { useBoxStore } from "../store/BoxStore";
+const boxStore = useBoxStore();
 
-boxStore.getBoxes()
+boxStore.getBoxes();
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

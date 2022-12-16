@@ -1,37 +1,43 @@
 <template>
   <div class="main">
-    <div title="Вернуть в исходное состояние" @click="boxStore.returnAll" class="return_all"></div>
+    <div
+      title="Вернуть в исходное состояние"
+      class="return_all"
+      @click="boxStore.returnAll"
+    />
     <div class="wrapper main__wrapper">
       <sidebar />
       <box-page />
     </div>
     <Footer />
-  </div>
+  </div>./components/FooterComponent.vue
 </template>
 
 <script setup lang="ts">
-import Footer from './components/Footer.vue';
-import Sidebar from './components/Sidebar.vue';
-import BoxPage from './pages/BoxPage.vue';
-import {useBoxStore} from './store/BoxStore'
+import Footer from "./components/FooterComponent.vue";
+import Sidebar from "./components/SidebarComponent.vue";
+import BoxPage from "./pages/BoxPage.vue";
+import { useBoxStore } from "./store/BoxStore";
 const boxStore = useBoxStore();
 
-console.log(boxStore.box)
-
+console.log(boxStore.box);
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @font-face {
   font-family: "SF_PRO";
   src: local("SF_PRO"),
-   url(./assets/fonts/SFPRODISPLAYREGULAR.OTF) format("truetype");
+    url(./assets/fonts/SFPRODISPLAYREGULAR.OTF) format("truetype");
 }
-$color_white_theme:  rgba($color: #FFFFFF, $alpha: 0.4);
-$border_color: #4D4D4D;
-$background_color: #1E1E1E;
+$color_white_theme: rgba(
+  $color: #ffffff,
+  $alpha: 0.4,
+);
+$border_color: #4d4d4d;
+$background_color: #1e1e1e;
 
-input{
+input {
   margin-top: -1vw;
   background-color: $background-color;
   border: 0.1vw solid $border_color;
@@ -42,16 +48,16 @@ input{
   color: white;
   font-weight: 500;
   font-size: 1vw;
-  &:focus{
+  &:focus {
     outline: 0px;
   }
 }
-.separate_line{
+.separate_line {
   width: 96%;
   height: 0.1vw;
   background: $border_color;
 }
-.main{
+.main {
   background-color: $background_color;
   min-height: 100vh;
   color: $color_white_theme;
@@ -60,17 +66,17 @@ input{
   padding: 2vw;
   box-sizing: border-box;
   font-size: 1.5vw;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
-.main__wrapper{
+.main__wrapper {
   display: flex;
   flex: 1 0 auto;
 }
-.shadow_block{
+.shadow_block {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(90deg, #3C3C3C 0%, #444444 51.04%, #333333 100%);
+  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51.04%, #333333 100%);
   pointer-events: none;
   &::after {
     position: absolute;
@@ -87,7 +93,7 @@ input{
       rgba(#fff, 0)
     );
     animation: shimmer 2s infinite;
-    content: '';
+    content: "";
   }
 
   @keyframes shimmer {
@@ -96,16 +102,16 @@ input{
     }
   }
 }
-.image{
+.image {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
-.border_block{
+.border_block {
   border-color: $border_color;
 }
-.return_all{
-  background-image: url('./assets/images/return_all.svg');
+.return_all {
+  background-image: url("./assets/images/return_all.svg");
   background-repeat: no-repeat;
   background-size: contain;
   height: 2.5vw;
