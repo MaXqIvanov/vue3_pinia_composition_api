@@ -29,38 +29,45 @@ export const useBoxStore = defineStore('boxStore', {
         current_box: null as IBox | null,
         is_visible_sidebar: false as boolean,
         drag_id: null as number | null,
+        drag_index: null as number | null
     }),
     actions: {
         setCurrentCategory(action: IBox | null){
             this.current_box = action
             this.is_visible_sidebar = !this.is_visible_sidebar
         },
-        dragStartHandler(event: any, box: IBox){
+        dragStartHandler(event: any, box: IBox, index: number){
            this.drag_id = box.id
+           this.drag_index = index
            console.log(event)
            console.log(box)
+           console.log(index);
         },
         dragLeaveHandler(event: any){
-            this.drag_id = null
         },
         dragEndHandler(event: any){
-            this.drag_id = null
             
         },
         dragOverHandler(event: any){
-            console.log(event)
             event.preventDefault();
-            this.drag_id = null
         },
-        DropHandler(event: any, box: IBox){
+        DropHandler(event: any, box: IBox, index: number){
             event.preventDefault();
+            if(this.drag_index !== null){
+                this.box[index] = this.box[this.drag_index]
+                this.box[this.drag_index] = {} as IBox
+            }
+            localStorage.setItem('BP_boxes', JSON.stringify(this.box))
             this.drag_id = null
-            console.log(event)
-            console.log(box)
-        }
-        // async getCategory(){
-        //   const {data} = await useCustomFetch<ICategory[]>('/category', {})
-        //   this.category = data.value
-        // },
+            this.drag_index = null
+        },
+        async getBoxes(){
+          const local: string = localStorage.getItem('BP_boxes') as string
+          const box = JSON.parse(local)
+          console.log(box)
+          if(box){
+            this.box = box
+          }
+        },
     },
 })
