@@ -94,7 +94,7 @@ export const useBoxStore = defineStore("boxStore", {
       }
     },
     async changeCountBoxes(event: IInputFileEvent) {
-      const value = event as unknown as number
+      const value = event.target.value as unknown as number
       if (
         this.current_index_box &&
         value >= 0 &&
