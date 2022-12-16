@@ -1,6 +1,6 @@
 <template>
     <div class="boxes border_block">
-        <div @click="box.id && boxStore.setCurrentCategory(box)" class="one_box boxes__one_box" v-for="(box, index) in boxStore.box" :key="box.id">
+        <div @click="box.id && boxStore.setCurrentBox(box, index)" class="one_box boxes__one_box" v-for="(box, index) in boxStore.box" :key="box.id">
             <div @dragstart="(e)=> boxStore.dragStartHandler(e, box, index)" 
                 @dragleave="boxStore.dragLeaveHandler"
                 @dragend="boxStore.dragEndHandler"
@@ -74,8 +74,9 @@ $background_color: #1E1E1E;
     right: 0px;
     border-top: 0.1vw solid;
     border-left: 0.1vw solid;
-    width: 2vw;
-    height: 2vw;
+    min-width: 2vw;
+    min-height: 2vw;
+    width: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;

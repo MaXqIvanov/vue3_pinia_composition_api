@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <div title="Вернуть в исходное состояние" @click="boxStore.returnAll" class="return_all"></div>
     <div class="wrapper main__wrapper">
       <sidebar />
       <box-page />
@@ -102,5 +103,17 @@ input{
 }
 .border_block{
   border-color: $border_color;
+}
+.return_all{
+  background-image: url('./assets/images/return_all.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 2.5vw;
+  width: 2.5vw;
+  position: fixed;
+  z-index: 999999;
+  top: 0.25vw;
+  right: 0.25vw;
+  cursor: pointer;
 }
 </style>

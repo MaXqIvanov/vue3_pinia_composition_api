@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar_boxes">
         <div class="sidebar_boxes__block">
-            <div @click="boxStore.setCurrentCategory(null)" class="sidebar_boxes__close"></div>
+            <div @click="boxStore.setCurrentBox(null, null)" class="sidebar_boxes__close"></div>
             <div class="sidebar_boxes__box">
                 <div :style="{backgroundColor: boxStore.current_box?.color}" class="box__color">
                     <div :style="{backgroundColor: boxStore.current_box?.color_blur}" class="box__color__blur"></div>
@@ -15,15 +15,15 @@
                 <div class="shadow_block sidebar_boxes__shadow_block"></div>
             </div>
             <div class="sidebar_boxes__footer">
-                <input placeholder="Введите количество"/>
+                <input placeholder="Введите количество" :defaultValue="boxStore.current_box.count" @input="boxStore.changeCountBoxes"/>
                 <Button v-if="!is_approve_delete" @click="is_approve_delete = !is_approve_delete" :text_color="'white'" :background_color="'#FA7272'" :title="'Удалить предмет'" :style="{padding: '1vw 5vw',  whiteSpace: 'nowrap'}"/>
                 <div v-else class="group_btn">
                     <Button @click="is_approve_delete = !is_approve_delete" :text_color="'#2D2D2D'" :background_color="'white'" :title="'Отмена'" :style="{padding: '1vw 2vw',  whiteSpace: 'nowrap'}"/>
-                    <Button @click="is_approve_delete = !is_approve_delete" :text_color="'white'" :background_color="'#FA7272'" :title="'Подтвердить'" :style="{padding: '1vw 1.5vw',  whiteSpace: 'nowrap'}"/>
+                    <Button @click="boxStore.deleteBox" :text_color="'white'" :background_color="'#FA7272'" :title="'Подтвердить'" :style="{padding: '1vw 1.5vw',  whiteSpace: 'nowrap'}"/>
                 </div>
             </div>
         </div>
-        <div @click="boxStore.setCurrentCategory(null)" class="sidebar_boxes__plug"></div>
+        <div @click="boxStore.setCurrentBox(null, null)" class="sidebar_boxes__plug"></div>
     </div>
 </template>
 

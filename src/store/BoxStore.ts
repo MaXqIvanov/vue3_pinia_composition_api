@@ -27,13 +27,15 @@ export const useBoxStore = defineStore('boxStore', {
             },{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}
         ] as IBox[],
         current_box: null as IBox | null,
+        current_index_box: null as number | null,
         is_visible_sidebar: false as boolean,
         drag_id: null as number | null,
         drag_index: null as number | null
     }),
     actions: {
-        setCurrentCategory(action: IBox | null){
-            this.current_box = action
+        setCurrentBox(box: IBox | null, index: number){
+            this.current_box = box
+            this.current_index_box = index
             this.is_visible_sidebar = !this.is_visible_sidebar
         },
         dragStartHandler(event: any, box: IBox, index: number){
@@ -53,11 +55,11 @@ export const useBoxStore = defineStore('boxStore', {
         },
         DropHandler(event: any, box: IBox, index: number){
             event.preventDefault();
-            if(this.drag_index !== null){
+            if(this.drag_index !== null && Object.keys(this.box[index]).length === 0){
                 this.box[index] = this.box[this.drag_index]
                 this.box[this.drag_index] = {} as IBox
+                localStorage.setItem('BP_boxes', JSON.stringify(this.box))
             }
-            localStorage.setItem('BP_boxes', JSON.stringify(this.box))
             this.drag_id = null
             this.drag_index = null
         },
@@ -69,5 +71,38 @@ export const useBoxStore = defineStore('boxStore', {
             this.box = box
           }
         },
+        async changeCountBoxes(event: any){
+            if(this.current_index_box && event.target.value >= 0 && event.target.value !== null){
+                this.box[this.current_index_box].count = event.target.value
+                localStorage.setItem('BP_boxes', JSON.stringify(this.box))
+            }
+        },
+        async deleteBox(){
+            if(this.current_index_box){
+                this.box[this.current_index_box] = {} as IBox
+                this.is_visible_sidebar = false
+                localStorage.setItem('BP_boxes', JSON.stringify(this.box))
+            }
+        },
+        async returnAll(){
+            this.box = [{
+                id: 1,
+                color: '#7FAA65',
+                count: 4,
+                color_blur: '184, 217, 152, 0.35'
+            }, {
+                id: 2,
+                color: '#AA9765',
+                count: 2,
+                color_blur: '217, 187, 152, 0.35'
+            },{
+                id: 3,
+                color: '#656CAA',
+                count: 5,
+                color_blur: '116, 129, 237, 0.35'
+            },{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}
+        ] as IBox[]
+            localStorage.setItem('BP_boxes', JSON.stringify(this.box))
+        }
     },
 })
