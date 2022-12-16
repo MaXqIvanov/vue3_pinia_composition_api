@@ -10,7 +10,7 @@
       <box-page />
     </div>
     <Footer />
-  </div>./components/FooterComponent.vue
+  </div>
 </template>
 
 <script setup lang="ts">
